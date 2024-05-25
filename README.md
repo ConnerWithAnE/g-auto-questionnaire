@@ -24,8 +24,8 @@ This project is built using [Next.js 14](https://github.com/vercel/next.js) and 
 Current Features: 
 - Save donor info
   - there is an option to save donor info, in the future I would like to allow for multiple donors but currently it only supports saving one.
-- List all QR-Codes
-  - Very simple as well, just displays all of the qr-codes which have been obtained, future plans include tabs for each donor
+- List all QR Codes
+  - Very simple as well, just displays all of the QR codes which have been obtained, future plans include tabs for each donor
 - Simeple API
   - Will serve up two values, the date of the last donation and the number of donations (both based on number of qr-codes and most recent date)
 - Fully self hosted and local.
@@ -66,13 +66,80 @@ First, clone the repository:
 git clone https://github.com/connerwithane/g-auto-questionnaire.git
 ```
 
+Install the packages:
+
+```bash
+npm install
+```
+
+**For development:**
+
+Run the dev server
+```bash
+npm run dev
+```
+
+**For normal use:**
+
+Build the project
+```bash
+npm run build
+```
+
+Start the server
+```bash
+npm run start
+```
+
+
 ## API
 
-## Homepage Integreation
+There are multiple endpoints available through the api but only 2 that have any potential use outside of the application
+The endpoints are:
+```
+http://host-ip:port/api/progress
+{
+  progress: number,
+  message: string | undefined
+}
+```
+This is used within the application to pass the current progress updates of the questionnaire to the client view from the server
+- progress: a number pertaining to the percentage of the questionnaire completed
+- message: a string containing the message from the server about the current progress point, or undefined if there is no new message to send
+```
+http://host-ip:port/api/images
+{
+  images: [
+    {
+    image: string,
+    date: string,
+    }
+  ]
+}
+```
+This is used within the appliation to pass the image data of each QR code to the client for display
+- images: a list of custom objects
+  - image: a `base64` string of image data to be used by the client
+  - date: a string formatted to appear in the `Month Day, Year` format to display alongside the QR image
+```
+http://host-ip:port/api/getInfo
+{
+  numberOfImages: number,
+  last_donation: string
+}
+```
+This is the only endpoint that is really useful outside of the application, it is used to display info about the QR codes for external use
+- numberOfImages: this is a number which displays how many QR codes are currently stored, it can be used to count the "number of donations" by using your QR codes
+- last_donation: this is a string formatted to appear in the `Month Day, Year` format grabbed from the most recent QR code 
+
+
+## Homepage Integration
 
 One of the perks of the api is the ability to integrate with the popular dashboard [Homepage](https://github.com/gethomepage/homepage)
 
 Doing so is very simple thanks to the capability of Homepage to allow custom widgets.
+
+Add something akin to this with these widget mappings to your `servcies.yaml` file in your homepage config folder.
 
 ```yaml
 - Grifols Auto Questionnaire:
@@ -90,5 +157,9 @@ Doing so is very simple thanks to the capability of Homepage to allow custom wid
               label: Last Donation
               format: text
 ```
+
+The result will look very similar to this
+
+<img src="docs/assets/homepage-widget.png" width="1100">
 
 

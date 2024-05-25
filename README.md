@@ -8,14 +8,14 @@
 </p>
 
 
-# Disclaimer
+## Disclaimer
 - This project is in no way affiliated with any Plasma collection company.
 - This project is not meant to be used to replace reading and understanding the questions asked.
 - This only works for the short form of questionnaire.
 - All user info and images are stored unencrypted
 - ⚠️ **Use this at your own risk**
 
-# What is this?
+## What is this?
 
 This is self hosted "service" (if you can call it that) which will automatically complete the Grifols plasma donation questionnaire. It is very simple currently, the classic "spend 3 hours building something to save 3 minutes" but it works for what I need currently and has lots of room for more! 
 
@@ -30,11 +30,11 @@ Current Features:
   - Will serve up two values, the date of the last donation and the number of donations (both based on number of qr-codes and most recent date)
 - Fully self hosted and local.
 
-# Getting Started
+## Getting Started
 
 This application can work standalone as well as with docker, though I personally recommend docker for the ease of use.
 
-## With Docker
+### With Docker
 
 Using docker compose:
 
@@ -58,7 +58,7 @@ docker run --name g-auto-questionnaire \
   connerwithane/g-auto-questionnaire:latest
 ```
 
-## With Node
+### With Node
 
 First, clone the repository:
 
@@ -66,9 +66,9 @@ First, clone the repository:
 git clone https://github.com/connerwithane/g-auto-questionnaire.git
 ```
 
-# API
+## API
 
-# Homepage Integreation
+## Homepage Integreation
 
 One of the perks of the api is the ability to integrate with the popular dashboard [Homepage](https://github.com/gethomepage/homepage)
 
